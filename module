@@ -1,0 +1,23 @@
+#!/bin/sh
+set -eu
+
+# If this is a test run
+if [ "${TEST_RUN:-false}" = true ]
+then  
+  # things which ENEXA is supposed to do
+  mkdir -p $ENEXA_MODULE_INSTANCE_DIRECTORY
+  echo "INSERT DATA { GRAPH <$ENEXA_META_DATA_GRAPH> {
+    <$ENEXA_MODULE_INSTANCE_IRI> <http://w3id.org/dice-research/enexa/module/tentris/parameter/file> <http://example.org/file/data.nt> .
+    <http://example.org/file/data.nt> <http://w3id.org/dice-research/enexa/ontology#location> \"enexa-dir://data.nt\" . }}" \
+    | sparql-update "$ENEXA_META_DATA_ENDPOINT"
+fi
+
+PORT=9080
+MODULE_INSTANCE_NAME=$(hostname)
+
+# Write information about the endpoint to the meta data graph
+echo "PREFIX enexa: <http://w3id.org/dice-research/enexa/ontology#> PREFIX sd: <http://www.w3.org/ns/sparql-service-description#> INSERT DATA { GRAPH <$ENEXA_META_DATA_GRAPH> {
+    <$ENEXA_MODULE_INSTANCE_IRI> a sd:Service ; sd:endpoint \"http://$MODULE_INSTANCE_NAME:$PORT/sparql\" . }}" | sparql-update "$ENEXA_META_DATA_ENDPOINT"
+
+# Start the service
+./tentris_server -p $PORT -f $(enexa-parameter "http://w3id.org/dice-research/enexa/module/tentris/parameter/file")
