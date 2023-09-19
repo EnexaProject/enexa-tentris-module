@@ -1,3 +1,4 @@
+# Don't change this file! It is generated based on Dockerfile.template.
 FROM hub.cs.upb.de/enexa/images/enexa-utils:1 AS utils
 FROM dicegroup/tentris_server:1.1.2 AS tentris
 FROM busybox:1.36.1

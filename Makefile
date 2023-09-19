@@ -35,5 +35,5 @@ update-ttl-file:
 	sed 's/$$(VERSION)/$(VERSION)/g' module.ttl.template | sed 's=$$(TAG)=$(TAG)=g' >> module.ttl
 	
 update-Dockerfile:
-	echo "# Don't change this file! It is generated based on Dockerfile.template." > module.ttl
-	sed 's/$$(TENTRIS_VERSION)/$(TENTRIS_VERSION)/g' Dockerfile.template >> module.ttl
+	echo "# Don't change this file! It is generated based on Dockerfile.template." > Dockerfile
+	sed 's/$$(TENTRIS_VERSION)/$(TENTRIS_VERSION)/g' Dockerfile.template >> Dockerfile
