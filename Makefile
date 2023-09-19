@@ -1,9 +1,10 @@
 IMAGE=hub.cs.upb.de/enexa/images/enexa-tentris-module
-VERSION=1.0.0
+TENTRIS_VERSION=1.1.2
+VERSION=$(TENTRIS_VERSION)-1
 TAG=$(IMAGE):$(VERSION)
 TEST_DIR=test-shared-dir
 
-build:
+build: update-ttl-file update-Dockerfile
 	docker build -t $(TAG) .
 
 test:
@@ -32,3 +33,7 @@ push-latest:
 update-ttl-file:
 	echo "# Don't change this file! It is generated based on module.ttl.template." > module.ttl
 	sed 's/$$(VERSION)/$(VERSION)/g' module.ttl.template | sed 's=$$(TAG)=$(TAG)=g' >> module.ttl
+	
+update-Dockerfile:
+	echo "# Don't change this file! It is generated based on Dockerfile.template." > module.ttl
+	sed 's/$$(TENTRIS_VERSION)/$(TENTRIS_VERSION)/g' Dockerfile.template >> module.ttl
