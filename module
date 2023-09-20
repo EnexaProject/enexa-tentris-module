@@ -19,8 +19,10 @@ MODULE_INSTANCE_NAME=$(hostname)
 echo "PREFIX enexa: <http://w3id.org/dice-research/enexa/ontology#> PREFIX sd: <http://www.w3.org/ns/sparql-service-description#> INSERT DATA { GRAPH <$ENEXA_META_DATA_GRAPH> {
     <$ENEXA_MODULE_INSTANCE_IRI> a sd:Service ; sd:endpoint \"http://$MODULE_INSTANCE_NAME:$PORT/sparql\" . }}" | sparql-update "$ENEXA_META_DATA_ENDPOINT"
 
+DATA_FILE=$(enexa-parameter "http://w3id.org/dice-research/enexa/module/tentris/parameter/file")
 # Load the data
-cat $(enexa-parameter "http://w3id.org/dice-research/enexa/module/tentris/parameter/file") | ./tentris_server load
+echo "cat $DATA_FILE | ./tentris_server load"
+cat "$DATA_FILE" | ./tentris_server load
 # Start the service
 ./tentris_server serve
 
