@@ -1,5 +1,5 @@
 IMAGE=hub.cs.upb.de/enexa/images/enexa-tentris-module
-TENTRIS_VERSION=0.2.0-SNAPSHOT
+TENTRIS_VERSION=0.3.0-SNAPSHOT
 VERSION=$(TENTRIS_VERSION)-1
 TAG=$(IMAGE):$(VERSION)
 TEST_DIR=test-shared-dir

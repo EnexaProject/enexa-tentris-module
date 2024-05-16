@@ -11,10 +11,10 @@
 @prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
 
-<0.2.0-SNAPSHOT-1> a enexa:Module ;
+<0.3.0-SNAPSHOT-1> a enexa:Module ;
 	rdfs:label "ENEXA Transformation Module"@en ;
 	rdfs:comment "This module allows the transformation and concatenation of RDF datasets."@en ;
-	hobbit:image <urn:container:docker:image:hub.cs.upb.de/enexa/images/enexa-tentris-module:0.2.0-SNAPSHOT-1> ;
+	hobbit:image <urn:container:docker:image:hub.cs.upb.de/enexa/images/enexa-tentris-module:0.3.0-SNAPSHOT-1> ;
 	alg:parameter <parameter/file> .
 
 <parameter/file> a alg:Parameter ;
