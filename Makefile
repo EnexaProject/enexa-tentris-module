@@ -1,11 +1,11 @@
 IMAGE=hub.cs.upb.de/enexa/images/enexa-tentris-module
 TENTRIS_VERSION=0.3.0-SNAPSHOT
-VERSION=$(TENTRIS_VERSION)-1
+VERSION=$(TENTRIS_VERSION)-10
 TAG=$(IMAGE):$(VERSION)
 TEST_DIR=test-shared-dir
 
 build: update-ttl-file update-Dockerfile
-	docker build -t $(TAG) .
+	docker build --no-cache -t $(TAG) .
 
 test:
 	[ -d $(TEST_DIR) ] || mkdir -p $(TEST_DIR)
